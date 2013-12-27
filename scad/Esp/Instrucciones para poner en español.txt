@@ -1,0 +1,2 @@
+OpenScad no permite importar librerias dinamicamente.
+Por eso,si se quiere poner en castellano la calculadora y el configurador,copiar y pegar estos dos archivos en la carpeta donde estan los otros .scad y sobreescribirlos.

@@ -1,9 +1,9 @@
-//include <3DR_Bot_Mot_C.scad>
+
 
 include <3DRAux.scad>
 include <3DRAux2.scad>
 use <3DR_Bot_Mot.scad>
-//Uncomment
+
 bot_mot_r();
 
 
