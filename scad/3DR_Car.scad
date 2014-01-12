@@ -1,7 +1,8 @@
 include <3DRAux.scad>
 
-
 car();
+//endstop_ty="hall";
+
 
 module bearing_guide(){	
 	translate([dBea,-rBea/3,0]){
@@ -17,7 +18,7 @@ module bearing_guide(){
 module line_guide(){
 	ang=15;
 	l=lHall+1;
-	hm=hHall-0.5;
+	hm=hEndAc-0.5;
 	cube([dBea,tCar,hCar]);
 	translate([0,sol,0]) difference(){			
 		cube([tCar,l,hCar]);						
@@ -47,6 +48,16 @@ module joint_sup(){
 		}
 	}
 }
+module bea_sup(){
+	difference(){
+		translate([0,-rBea/3,0])
+			cylinder(r=rBea,h=1.2);
+		translate([-rBea,-2*rBea+rRod/2-1,-sol])
+			cube([2*rBea,2*rBea,1.5+2*sol]);
+	}
+}
+
+//bea_sup();
 
 module car_zip(){
 	difference(){
@@ -59,8 +70,6 @@ module car_zip(){
 module car_nh(){
 	bearing_guide();
 	line_guide();	
-	if(joint_ty=="traxx")joint_sup();
-	if(joint_ty=="mag")
 		translate([0,-0,hCar])
 			mirror([0,0,1])joint_sup();	
 }
@@ -71,8 +80,9 @@ module carmid(){
 		translate([dBea,-rBea/3,-sol])
 			cylinder(r=rBea,h=hCar+2*sol);
 		if(joint_ty=="traxx")
-			translate([tCar-2*sol+xJS/4-xJS/30,7*tCar/2,3]) rotate([0,90,0])
-				cylinder(r=1.5,h=xJS/2+xJS/15+2*sol);
+			translate([tCar-2*sol+xJS/4-xJS/30,7*tCar/2,hCar-3])
+				rotate([0,90,0])
+					cylinder(r=1.5,h=xJS/2+xJS/15+2*sol);
 		if(joint_ty=="mag")
 			translate([xJS/2+tCar,2*tCar+sol+M3r*sin(30),hCar-M3r*1.2])
 				rotate([120,0,0]){
@@ -80,27 +90,42 @@ module carmid(){
 					translate([0,0,tCar/sin(30)])
 						cylinder(r=M3n/2,h=4,$fn=6);
 		}
-		if(endstop_ty=="hall")
-			translate([0,lHall-rHall,-sol])
-				cylinder(r=rHall,h=hHall);
+		translate([0,lHall-rEndAc,-sol])
+			cylinder(r=rEndAc,h=hEndAc);
+		if(endstop_ty=="mech"){
+			translate([0,lHall-rEndAc+0*sol,hEndAc/3-sol])
+				cube([M3n,M3n+2,M3h],center=true);
+		}
+
+
+		//Line holes
 		translate([-2*sol,5,13.5]){
-			cube([tCar+4*sol,2.5,2.5]);
+			//cube([tCar+4*sol,2.5,2.5]);
 			translate([0,4,0]) cube([tCar+4*sol,2.5,2.5]);
-			translate([0,0,-5.5]) cube([tCar+4*sol,2.5,2.5]);
+			//translate([0,0,-5.5]) cube([tCar+4*sol,2.5,2.5]);
 			translate([0,4,-5.5]) cube([tCar+4*sol,2.5,2.5]);
 		}
-		translate([dBea,-rBea/3,(hCar-hZip-lBea+2)/2])
+		translate([dBea,-rBea/3,(hCar-hZip-lBea+3)/2])
 			car_zip();
-		translate([dBea,-rBea/3,(hCar-hZip+lBea-2)/2])
+		translate([dBea,-rBea/3,(hCar-hZip+lBea-3)/2])
 			car_zip();
+		translate([tCar+1,-sol,3])
+			rotate([-90,0,0])
+				cylinder(r=1,h=1*(tCar+2*sol));
+
 	}
-	translate([dBea-(rBea-tCar/2+tZip),-rBea/3+tCar,(hCar-lBea)/2-2])
-		cube([2*(rBea-tCar/2+tZip),tCar,2]);
-	translate([dBea-(rBea-tCar/2+tZip),-rBea/3+tCar,(hCar+lBea)/2])
-		cube([2*(rBea-tCar/2+tZip),tCar,2]);	
+	translate([dBea,sol,0]) bea_sup();
+	translate([dBea,sol,hCar-1.2]) bea_sup();		
 }
 
 module car(){
-	carmid();
-	mirror([1,0,0]) carmid();
+	translate([0,0,hCar])
+		mirror([0,0,1]){
+			carmid();
+			mirror([1,0,0]) carmid();
+/*if(endstop_ty=="mech"){
+			translate([0,lHall-rEndAc,+sol])
+				cylinder(r=M3r,h=hEndAc);
+		}*/
+		}
 }
