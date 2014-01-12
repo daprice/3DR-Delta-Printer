@@ -25,26 +25,31 @@ module cylh(re=4,ri=1.5,h=hT){
 		translate([0,0,-sol]) cylinder(r=ri,h=h+2*sol);
 	}
 }
-module card_guide(vLEle=vLRamps,re=4,ri=1.5,h=hT){
+module card_guide(re=4,ri=1.5,h=hT){
 	//Tarjeta en un lateral,girada 30.Mas limpio,pero no cabe la rumba
 	/*translate([vgx,0,0]) for(i=[0:2])
 			rotate(120*i+30) translate([0,lCov/2-2*tTop,0]){*/
-	translate([vgx,0,0]) for(i=[0:2]) rotate(120*i) {
-		translate([vLEle[0][0],vLRamps[0][1],0])
+	/*translate([vgx,0,0]) for(i=[0:2]) rotate(120*i) {
+		translate([vLEle[0][0],vLEle[0][1],0])
 			cylh(re=re,ri=ri,h=h);
-		translate([vLEle[1][0],vLRamps[1][1],0])
+		translate([vLEle[1][0],vLEle[1][1],0])
 			cylh(re=re,ri=ri,h=h);
-		translate([vLEle[2][0],vLRamps[2][1],0])
+		translate([vLEle[2][0],vLEle[2][1],0])
 			cylh(re=re,ri=ri,h=h);
-		translate([vLEle[3][0],vLRamps[3][1],0])
+		translate([vLEle[3][0],vLEle[3][1],0])
 			cylh(re=re,ri=ri,h=h);
-			}	
+	}*/
+	translate([vgx,0,0]) for(i=[0:len(vLEle)-1]) for(j=[0:2]){		
+		rotate(120*j) 
+			translate([vLEle[i][0],vLEle[i][1],0])
+				cylh(re=re,ri=ri,h=h);
+	}
 }
 
-module card_sup(vLEle=vLRamps,re=4,ri=1.5,h=hT){	
+module card_sup(re=4,ri=1.5,h=hT){	
 	intersection(){
 		linear_extrude(height=hTop)auxbase();
-		if(elec_ty=="RAMPS")card_guide(vLEle=vLRamps,re=4,ri=1.5,h=h);
+		card_guide(re=4,ri=1.5,h=h);
 	}
 }
 
@@ -87,6 +92,7 @@ module tslot_guide(){
 		cube([vLT[4],30,tTop+1]);
 	translate([sumV(v=vLT,i=4),-3,0])
 		cube([sumX(vL,vAn,4)-sumV(v=vLT,i=4)-sol,6,tTop+1]);
+	
 }
 module tslo_h(){
 	if(slot_ty=="tslot"){
@@ -125,7 +131,8 @@ module top_ele(){
 		auxHole(num=6,tra=rCov/4,ra=2,hh=hTopHol);
 		auxHole(num=6,tra=3*rCov/4,ra=2,hh=hTopHol);
 		auxHole(num=6,tra=rCov/2,ra=8,hh=hT);
-		translate([0,0,hT]) linear_extrude(height=hTop-hT+2*sol) card_h();
+		translate([0,0,hT])
+			linear_extrude(height=hTop-hT+2*sol) card_h();
 		translate([-sol,0,9]) rotate([0,90,0]) 
 			cylinder(r=2.5,h=tTop+2*sol);		
 		translate([tTop,-10,-2*sol]) tslo_h();
@@ -147,11 +154,18 @@ module top_ele(){
 			union_h(r=M3r,h=hTop/2+2*sol);
 		translate([0,0,-sol])
 			mirror([0,1,0]) union_h(r=M3r,h=hTop/2+2*sol);
-
+		translate([vgx,0,-sol]) for(i=[0:len(vLEle)-1]) for(j=[0:2]){		
+			rotate(120*j) 
+				translate([vLEle[i][0],vLEle[i][1],0])
+					cylinder(r=M3r,h=tTop+2*sol);		
+		}
 	}
 	if(endstop_ty=="hall")
 		translate([sumV(v=vLT,i=2)+16.5,-28.3/2+sol,tTop+1])
 			hall_endstop();
+	if(endstop_ty=="nhall")
+		translate([sumV(v=vLT,i=2)+16.5-6+2*sol,-5,0])
+			cube([6-sol,10,tTop+1]);
 }
 
 

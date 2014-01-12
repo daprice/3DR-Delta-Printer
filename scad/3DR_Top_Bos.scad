@@ -3,7 +3,7 @@
 //translate([-6.5,-32.5,0]) rotate(30)import("stl/3DR_Top_Bos.stl");
 include <3DRAux.scad>
 //Uncomment
-//top_bos();
+top_bos();
 
 module top_bos(){
 	difference(){

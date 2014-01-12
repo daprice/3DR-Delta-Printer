@@ -7,14 +7,14 @@ output();
 //M3 thread radius
 M3r=1.6;
 //M3 height
-M3h=2.4;
+M3h=2.5;
 //M3 flats
 M3n=5.5;
 //M3 nut outer diameter
 M3nr=M3n/cos(30);//6.01;
 
 //Same as M3
-M5r=2.6;
+M5r=2.7;
 M5h=4;
 M5n=8;
 M5nr=M5n/cos(30);//8.76;
@@ -34,17 +34,23 @@ joint_ty="mag";
 
 					//**Vertical Rod**//
 //radius of the rod
-rRod=4;
+rRod=4.2;
 
 				//**Hall Endstop type**//
-//Endstop type.Only hall
-endstop_ty="hall";
+//Endstop type.Only hall,nhall or mech
+endstop_ty="mech";
 //radius of magnet for hall detector
 rHall=4.2;
 //height of magnet for hall detector
-hHall=5;
+hHall2=5;
 //Distance wich magnet is placed
 lHall=14;
+//Endstop actuator radius
+rEndAc=(endstop_ty=="hall"||endstop_ty=="nhall"?rHall:M3r);
+hEndAc=(endstop_ty=="hall"||endstop_ty=="nhall"?hHall2:M3h*3);;
+
+
+
 
 				//**Magnetic arm joints**//
 //Magnet radius
@@ -58,31 +64,33 @@ kBall=0.5;
 //Joint thicknes
 tJoint=3;
 //Arm rod radius
-rArmRod=3;
+rArmRod=1.6;
 //Tolerance
 kJoint=0.1;				
 
 
 				//**Bearing**//
 //bearing outer radius
-rBea=5.9;
+rBea=6;
 //bearing length
-lBea=14;
+lBea=16;
 //Horizontal distance between the center of to bearings
 dBea=19+rBea;//15.6+rBea;
 
 				//**Carriage**//
 //Car height
-hCar=18;
+hCar=lBea+3;
 //Car thicness
-tCar=(3<=rHall?rHall+1:3);
+tCar=(3<=rEndAc?rEndAc+1:3.5);
+echo(tCar);
 //Support width
 xJS=dBea-tCar-rBea*cos(asin(1/3));
 //Support height
 z=11.5;
 //Support constant,don´t modify
 angJS=asin(tCar/xJS);	
-xJS2=xJS*(1-cos(angJS));	
+xJS2=xJS*(1-cos(angJS));
+
 	
 
 				//**Top & Botton**//
@@ -168,11 +176,17 @@ tBedSup=4*hB/5;
 				//**Electronic**//
 //Electronic type: RAMPS or TODO
 elec_ty="RAMPS";
-//Traslation for RAMPS
+//Traslation for holes
 vtr=4.5;//4.5
 //Coordinates of the holes for Ramps
 vLRamps=[[13.97-108/2-vtr,2.54-53/2],[96.52-108/2-vtr,2.54-53/2],
 			[15.24-108/2-vtr,50.8-53/2],[90.17-108/2-vtr,50.8-53/2]];
+//Para definir los puntos px= x-ancho/2   py=y-alto/2
+vLSav=[[3.81-99.7/2-vtr,3.81-64.77/2],[96.52-99.7/2-vtr,3.81-64.77/2],
+		[3.81-99.7/2-vtr,60.96-64.77/2],[96.52-99.7/2-vtr,60.96-64.77/2]];
+vLEle=(elec_ty=="RAMPS"?vLRamps:
+		elec_ty=="SAV"?vLSav:[0,0]);
+
 
 				//**Nema**//
 //Nema length
