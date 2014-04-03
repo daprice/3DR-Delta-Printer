@@ -33,6 +33,8 @@ $fn=60;
 joint_ty="mag";
 
 					//**Vertical Rod**//
+//Whether to use vertical rods
+useRod=false;
 //radius of the rod
 rRod=4.2;
 

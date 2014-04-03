@@ -1,0 +1,3 @@
+[submodule "scad/lib/Printable_Cheapskate"]
+	path = scad/lib/Printable_Cheapskate
+	url = /Users/daleprice/Desktop/3D Printing/Printable_Cheapskate
