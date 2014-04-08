@@ -56,17 +56,17 @@ hEndAc=(endstop_ty=="hall"||endstop_ty=="nhall"?hHall2:M3h*3);;
 
 				//**Magnetic arm joints**//
 //Magnet radius
-rMag=4.1;
+rMag=9.525/2;
 //Magnet height
-hMag=10;
+hMag=9.525;
 //Ball diameter
-dBall=9.5;
+dBall=9.525;
 //Ball tolerance
 kBall=0.5;
 //Joint thicknes
 tJoint=3;
 //Arm rod radius
-rArmRod=1.6;
+rArmRod=3;
 //Tolerance
 kJoint=0.1;				
 
@@ -97,7 +97,7 @@ xJS2=xJS*(1-cos(angJS));
 
 				//**Top & Botton**//
 //Side length of the triangle 160 for heated bed 
-lCov=160;
+lCov=116;
 //Rounded
 rounded_b=true;
 //Total base height(base+slot_guide)
@@ -123,7 +123,7 @@ dSl=lCov/6;
 
 				//**Top&Botton Boss**//
 //Side length of the triangle
-lBos=lCov/2;
+lBos=lCov/2.5;
 //Circumradius
 rBos=lBos/sqrt(3);
 //Auxiliary dimension
@@ -169,7 +169,7 @@ tyJR=sqrt(+pow(REff,2)-pow((txJR+xJR),2));
 
 				//**Heat Bed **//
 //Is present heated bed?
-hbed=true;
+hbed=false;
 //Center-to-center mounting holes
 lhb=209;//209
 //Bed support thickness
