@@ -13,7 +13,7 @@ module top_bos(){
 				rotate(60) translate([lBos/2,-rp/2,-sol])
 					cube([rp,rp,hT+2*sol]);
 				rotate([0,90,0])translate([-hTopHol,lBos/4,rBos/2-10+sol]) 									cylinder(r=M4r,h=10);				
-				translate([lBos/4-M4n/2,rBos/2-6.5+sol,hTopHol-M4n/2]) 
+				translate([lBos/4-M4n/2,rBos/2-5.4+sol,hTopHol-M4n/2]) 
 					cube([M4h,M4n,hT-hTopHol+sol+M4n]);
 			}
 		}
