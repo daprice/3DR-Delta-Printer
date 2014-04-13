@@ -101,7 +101,7 @@ lCov=116;
 //Rounded
 rounded_b=true;
 //Total base height(base+slot_guide)
-hBas=60;
+hBas=65;
 //Base height
 hB=25;
 //Height of the base holes
