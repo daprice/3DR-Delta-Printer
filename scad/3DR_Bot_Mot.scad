@@ -80,8 +80,10 @@ module bot_mot_nh(){
 	botton();
 	bslot_guide();
 	motor_guide();
-	brod_guide(r=lCov/27);
-	mirror([0,1,0]) brod_guide(r=lCov/27);
+	if(useRod) {
+		brod_guide(r=lCov/27);
+		mirror([0,1,0]) brod_guide(r=lCov/27);
+	}
 	if(hbed) hbed_sup(r=4,h=tBas+4.5);
 }
 
@@ -104,10 +106,12 @@ module bot_mot(){
 		translate([tBas,-10,-2*sol])
 			bslo_h(e=kSlot);
 		
-		translate([sumV(v=vLM,i=2),-dBea,-sol])
-			cylinder(r=rRod,h=hB-rRod);
-		translate([sumV(v=vLM,i=2),dBea,-sol])
-			cylinder(r=rRod,h=hB-rRod);
+		if(useRod) {
+			translate([sumV(v=vLM,i=2),-dBea,-sol])
+				cylinder(r=rRod,h=hB-rRod);
+			translate([sumV(v=vLM,i=2),dBea,-sol])
+				cylinder(r=rRod,h=hB-rRod);
+		}
 		translate([sumV(v=vLM,i=2),-10,-sol])
 			cube([vLM[3],20,tBas+2*sol]);
 		translate([60+sol,0,31]) rotate([0,-90,0])
