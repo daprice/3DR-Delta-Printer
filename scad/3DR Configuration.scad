@@ -169,9 +169,9 @@ tyJR=sqrt(+pow(REff,2)-pow((txJR+xJR),2));
 
 				//**Heat Bed **//
 //Is present heated bed?
-hbed=false;
+hbed=true;
 //Center-to-center mounting holes
-lhb=209;//209
+lhb=128.6;//209
 //Bed support thickness
 tBedSup=4*hB/5;
 
