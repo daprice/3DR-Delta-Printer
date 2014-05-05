@@ -99,8 +99,10 @@ module bot_mot(){
 		//translate([sumV(v=vLM,i=2)-2,0,30])rotate([0,90,0])
 		translate([sumV(v=vLM,i=2)-1.5,0,30])rotate([0,90,0])
 			cylinder(r=11,h=2+sol);
-		translate([-sol-tBas,0,32]) rotate([0,90,0]) 
+		translate([-sol-tBas,0,32]) rotate([0,90,0]) {
 			cylinder(r=M5r,h=2*tBas+2*sol);
+			cylinder(r=M5r + 4, h=3);
+		}
 		translate([tBas,-10,-2*sol])
 			bslo_h(e=kSlot);
 		
