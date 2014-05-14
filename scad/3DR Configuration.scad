@@ -147,7 +147,7 @@ dSlot=20;
 //Slot type (tslot or squa)
 slot_ty="tslot";
 //Slot allowance
-kSlot=0.2;
+kSlot=0.4;
 
 				//**Effector**//
 //Effector thicknes
