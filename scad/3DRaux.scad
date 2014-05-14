@@ -69,12 +69,14 @@ module ts204(e=0){
 		3*sqrt(2)-2*e/tan(67.5),
 		1-e/tan(67.5)-e/tan(45),
 		3,
-		2+sol,
+		2+sol+e,
 		3+sol-e];	
 	//color("red")testPoints(vLen=vLt,vAng=vAt);
 	pointsT=[sumP(vLt,vAt,0),sumP(vLt,vAt,1),sumP(vLt,vAt,2),sumP(vLt,vAt,3),sumP(vLt,vAt,4),sumP(vLt,vAt,5),sumP(vLt,vAt,6)];
-	polygon(points=pointsT);
-	mirror([0,1,0]) polygon(points=pointsT);
+	translate([-e,0,0]) {
+		polygon(points=pointsT);
+		mirror([0,1,0]) polygon(points=pointsT);
+	}
 }
 
 
