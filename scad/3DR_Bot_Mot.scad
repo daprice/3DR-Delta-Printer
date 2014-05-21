@@ -1,6 +1,7 @@
 include <3DRaux.scad>
 use <nema.scad>
 use <3DR_Bed_Sup.scad>
+use <lib/MCAD/teardrop.scad>
 
 bot_mot();
 
@@ -96,8 +97,8 @@ module bot_mot(){
 		auxHole(num=3,tra=lBos/4,ra=M4r,hh=hBasHol);
 		auxHole(num=6,tra=rCov/4,ra=M4r,hh=hBasHol);
 		auxHole(num=6,tra=3*rCov/4,ra=M4r,hh=hBasHol);
-		translate([sumV(v=vLM,i=3)-sol,0,30])rotate([0,90,0])
-			cylinder(r=15,h=10);
+		translate([sumV(v=vLM,i=3)-sol+5,0,30])
+			teardrop(radius=15,length=10,angle=90);
 		//translate([sumV(v=vLM,i=2)-2,0,30])rotate([0,90,0])
 		translate([sumV(v=vLM,i=2)-1.5,0,30])rotate([0,90,0])
 			cylinder(r=11,h=2+sol);

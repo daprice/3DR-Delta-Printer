@@ -1,3 +1,6 @@
 [submodule "scad/lib/Printable_Cheapskate"]
 	path = scad/lib/Printable_Cheapskate
 	url = /Users/daleprice/Desktop/3D Printing/Printable_Cheapskate
+[submodule "scad/lib/MCAD"]
+	path = scad/lib/MCAD
+	url = https://github.com/openscad/MCAD.git
