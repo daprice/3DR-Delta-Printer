@@ -120,8 +120,8 @@ module top_ele_nh(){
 	top();
 	tslot_guide();
 	card_sup(vLEle=vLRamps,re=4,ri=1.5,h=hT-sol);
-	union_h(r=2*M3r);
-	mirror([0,1,0]) union_h(r=2*M3r);
+	*union_h(r=2*M3r);
+	*mirror([0,1,0]) union_h(r=2*M3r);
 
 }
 module top_ele(){
