@@ -15,6 +15,12 @@ module auxHole(num=0,tra=0,ra=2,hh=16){
 			cylinder(r=ra,h=tBas+2*sol+5);
 }
 
+module auxRectHole(num=0,tra=0,w=2,h=2,hh=16){
+	translate([sumP(vL,vAn,num)[0]+tra*cos(vAn[num+1]),sumP(vL,vAn,num)[1]+tra*sin(vAn[num+1]),hh])
+		rotate([vAn[num],270,0])translate([0,0,-sol])
+			cube([h,w,tBas+2*sol+5]);
+}
+
 vAn=[90,45,30,300,210,270,330,240,150,135];
 vL=[dSl/2, dSl*sqrt(2), (lCov+lBos)/2, rCov, lBos/2-rp, rp, lBos/2-rp, rCov, (lCov+lBos)/2, dSl*sqrt(2)];
 vArc= [1,4,0,0,0,0,0,4,1,3];

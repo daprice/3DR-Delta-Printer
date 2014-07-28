@@ -1,4 +1,5 @@
 include <3DRaux.scad>
+include <wireTie.scad>
 
 top_ele();
 
@@ -128,11 +129,13 @@ module top_ele(){
 		top_ele_nh();
 		auxHole(num=2,tra=rCov/4,ra=2,hh=hTopHol);
 		auxHole(num=2,tra=rCov/2,ra=8,hh=hT);
+		auxRectHole(num=2,tra=rCov/2+3,w=6,h=3,hh=hT/2-5); //tiedown
 		auxHole(num=2,tra=3*rCov/4,ra=2,hh=hTopHol);
 		auxHole(num=3,tra=lBos/4,ra=2,hh=hTopHol);
 		auxHole(num=6,tra=rCov/4,ra=2,hh=hTopHol);
 		auxHole(num=6,tra=3*rCov/4,ra=2,hh=hTopHol);
 		auxHole(num=6,tra=rCov/2,ra=8,hh=hT);
+		auxRectHole(num=6,tra=rCov/2+3,w=6,h=3,hh=hT/2-5); //tiedown
 		translate([0,0,hT])
 			linear_extrude(height=hTop-hT+2*sol) card_h();
 		translate([-sol-tTop,0,9]) rotate([0,90,0]) {
@@ -178,6 +181,7 @@ module top_ele(){
 				}
 			}
 		}	
+				
 		translate([0,0,-sol])
 			union_h(r=M3r,h=hTop/2+2*sol);
 		translate([0,0,-sol])
@@ -194,6 +198,22 @@ module top_ele(){
 	if(endstop_ty=="nhall")
 		translate([sumV(v=vLT,i=2)+16.5-6+2*sol,-5,0])
 			cube([6-sol,10,tTop+1]);
+	
+	//wire tiedowns
+	translate([sumV(v=vLT,i=3)+sol+20, -33,tTop-3])
+		rotate([0,0,90])
+			wireTiedownCentered(size=6);
+	translate([sumV(v=vLT,i=3)+sol+20, 33,tTop-3])
+		rotate([0,0,90])
+			wireTiedownCentered(size=6);
+	translate([sumV(v=vLT,i=3)+sol+50, -60, tTop-3])
+		rotate([0,0,-45])
+			wireTiedownCentered(size=6);
+	translate([sumV(v=vLT,i=3)+sol+50, 60, tTop-3])
+		rotate([0,0,45])
+			wireTiedownCentered(size=6);
+
+
 }
 
 
