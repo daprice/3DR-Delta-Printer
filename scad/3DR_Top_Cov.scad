@@ -1,4 +1,5 @@
 include <3DRAux.scad>
+include <lib/MCAD/teardrop.scad>
 
 top_cov();
 
@@ -52,8 +53,10 @@ module union_h(r=M3r,zTr=0){
 module top_cov_nh(){
 	top_cov_b();
 	tcslot_guide();
-	tcrod_guide();
-	mirror([0,1,0]) tcrod_guide();
+	if(useRod) {
+		tcrod_guide();
+		mirror([0,1,0]) tcrod_guide();
+	}
 	union_h(r=2*M3r);
 	mirror([0,1,0]) union_h(r=2*M3r);
 }
@@ -62,15 +65,19 @@ module top_cov(){
 		top_cov_nh();
 		translate([tTCov,-dSlot/2,tTCov])
 			tcslo_h();
-		translate([tTCov+dSlot,-dBea+tTCov,tTCov])
-			cylinder(r=rRod,h=hTCov);
-		translate([tTCov+dSlot,dBea-tTCov,tTCov])
-			cylinder(r=rRod,h=hTCov);
+		if(useRod) {
+			translate([tTCov+dSlot,-dBea+tTCov,tTCov])
+				cylinder(r=rRod,h=hTCov);
+			translate([tTCov+dSlot,dBea-tTCov,tTCov])
+				cylinder(r=rRod,h=hTCov);
+		}
 		union_h(r=M3r,zTr=tTCov);
 		mirror([0,1,0]) union_h(r=M3r,zTr=tTCov);
+		//RepRap logo
+		translate([-4,0,13]) mirror([0,0,1]) teardrop(radius=6,length=6,angle=90);
 		//Por parametrizar
-		translate([-1.5*tTCov+dSlot-5,dBea-12-3,2*tTCov+1-sol])
-			cube([18,6,30]);
+		translate([-1.5*tTCov+dSlot-5,dBea-12-9,tTCov-sol])
+			cube([18,14,30]);
 		
 	}
 }
