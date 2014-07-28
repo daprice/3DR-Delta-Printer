@@ -208,10 +208,10 @@ module top_ele(){
 	translate([sumV(v=vLT,i=3)+sol+20, 33,tTop-3])
 		rotate([0,0,90])
 			wireTiedownCentered(size=6);
-	translate([sumV(v=vLT,i=3)+sol+50, -60, tTop-3])
+	translate([sumV(v=vLT,i=3)+sol+50, -50, tTop-3])
 		rotate([0,0,-45])
 			wireTiedownCentered(size=6);
-	translate([sumV(v=vLT,i=3)+sol+50, 60, tTop-3])
+	translate([sumV(v=vLT,i=3)+sol+50, 50, tTop-3])
 		rotate([0,0,45])
 			wireTiedownCentered(size=6);
 
