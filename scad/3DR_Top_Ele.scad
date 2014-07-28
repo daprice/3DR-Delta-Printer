@@ -136,6 +136,8 @@ module top_ele(){
 		auxHole(num=6,tra=3*rCov/4,ra=2,hh=hTopHol);
 		auxHole(num=6,tra=rCov/2,ra=8,hh=hT);
 		auxRectHole(num=6,tra=rCov/2+3,w=6,h=3,hh=hT/2-5); //tiedown
+		//hole for wire routing from motors (coming through the aluminum extrusion)
+		translate([sumV(v=vLT,i=3)+sol,dBea/2+2,0]) cube([10,10,hTop-hT]);
 		translate([0,0,hT])
 			linear_extrude(height=hTop-hT+2*sol) card_h();
 		translate([-sol-tTop,0,9]) rotate([0,90,0]) {
