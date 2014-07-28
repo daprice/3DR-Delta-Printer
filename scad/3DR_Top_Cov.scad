@@ -1,4 +1,5 @@
 include <3DRAux.scad>
+include <lib/MCAD/teardrop.scad>
 
 top_cov();
 
@@ -72,6 +73,8 @@ module top_cov(){
 		}
 		union_h(r=M3r,zTr=tTCov);
 		mirror([0,1,0]) union_h(r=M3r,zTr=tTCov);
+		//RepRap logo
+		translate([-4,0,13]) mirror([0,0,1]) teardrop(radius=6,length=6,angle=90);
 		//Por parametrizar
 		translate([-1.5*tTCov+dSlot-5,dBea-12-9,tTCov-sol])
 			cube([18,14,30]);
