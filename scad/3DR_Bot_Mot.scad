@@ -124,7 +124,7 @@ module bot_mot(){
 			//nemcov(dc=-15.5,lh=50);
 		//angled piece for motor clearance during assembly when the printer diameter is smaller
 		translate([100,0,hB]) rotate([0,45,0]) cube([10,40,20], center=true);
-		translate([sumV(v=vLM,i=2)-3,-4,hBas-8]) cube([27,8,6]);
+		translate([sumV(v=vLM,i=2)-3,-4,hBas-8]) cube([29,8,6]);
 		if(hbed) {
 			translate([0,0,-sol]) hbed_guide(r=M3r,h=hB+2*sol);
 			translate([-2*tBas*cos(120),-2*tBas*sin(120)]) bed_sup_h();
