@@ -4,7 +4,7 @@
 include <3DR Configuration.scad>
 include <polyLine.scad>
 //Distances for motor in bas
-vLM=[tBas,dSlot,2.5,16.5,7,1.5,4];
+vLM=[tBas,dSlot,2.5,18,7,0,4];
 
 
 //num=num de punto de la base,tra=cantidad a trasladar desde el punto

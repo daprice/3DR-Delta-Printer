@@ -39,7 +39,7 @@ module motor_guide(){
 	translate([sumV(v=vLM,i=2),-dSlot/2-tBas,hBas-10])
 		cube([vLM[3],dSlot+tBas*2,10]);
 	translate([sumV(v=vLM,i=3),-23,0]) cube([vLM[4],46,hBas]);
-	translate([sumV(v=vLM,i=4),-23,0]) cube([vLM[5],46,tBas+23]);
+	*translate([sumV(v=vLM,i=4),-23,0]) cube([vLM[5],46,tBas+23]);
 	translate([sumV(v=vLM,i=5),-23,0]) cube([vLM[6],46,tBas+4]);
 	translate([sumV(v=vLM,i=6),-2,0]) 
 		cube([sumX(vL,vAn,4)-sumV(v=vLM,i=6)-tBas/2,4,tBas+4]);
@@ -100,8 +100,8 @@ module bot_mot(){
 		translate([sumV(v=vLM,i=3)-sol+5,0,30])
 			teardrop(radius=15,length=10,angle=90);
 		//translate([sumV(v=vLM,i=2)-2,0,30])rotate([0,90,0])
-		translate([sumV(v=vLM,i=2)-1.5,0,30])rotate([0,90,0])
-			cylinder(r=11,h=2+sol);
+		translate([sumV(v=vLM,i=2)-2,0,30])rotate([0,90,0])
+			cylinder(r=12,h=3+sol);
 		translate([-sol-tBas,0,32]) rotate([0,90,0]) {
 			cylinder(r=M5r,h=2*tBas+2*sol);
 			cylinder(r=M5r + 4, h=3);
@@ -117,11 +117,13 @@ module bot_mot(){
 		}
 		translate([sumV(v=vLM,i=2),-10,-sol])
 			cube([vLM[3],20,tBas+2*sol]);
-		translate([60+sol,0,31]) rotate([0,-90,0])
+		translate([61.5+sol,0,31]) rotate([0,-90,0])
 			nemcov(dc=-15.5,lh=60,num=[0,3]);
-		translate([60+sol,0,31]) rotate([0,-90,0])
+		translate([61.5+sol,0,31]) rotate([0,-90,0])
 			nemcov(dc=-15.5,lh=10,num=[1,2]);
 			//nemcov(dc=-15.5,lh=50);
+		//angled piece for motor clearance during assembly when the printer diameter is smaller
+		translate([100,0,hB]) rotate([0,45,0]) cube([10,40,20], center=true);
 		translate([sumV(v=vLM,i=2)-3,-4,hBas-8]) cube([27,8,6]);
 		if(hbed) {
 			translate([0,0,-sol]) hbed_guide(r=M3r,h=hB+2*sol);
