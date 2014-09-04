@@ -26,7 +26,7 @@ module bslo_h(e=kSlot){
 		difference(){	
 			linear_extrude(height=hBas+3) ts20(v=[1,3],e=e);
 			translate([0,dSlot/2-3+e/2,-sol])
-				cube([6-e,6-e,hBas-38]);
+				cube([6-e,6-e,hBas-40]);
 			translate([dSlot/2+e*2,dSlot/2,0])
 				linear_extrude(height=hBas-8) ts204(e=e);
 		}
