@@ -188,6 +188,10 @@ vLSav=[[3.81-99.7/2-vtr,3.81-64.77/2],[96.52-99.7/2-vtr,3.81-64.77/2],
 		[3.81-99.7/2-vtr,60.96-64.77/2],[96.52-99.7/2-vtr,60.96-64.77/2]];
 vLEle=(elec_ty=="RAMPS"?vLRamps:
 		elec_ty=="SAV"?vLSav:[0,0]);
+//Whether to use RichRap's LCD controller mount
+lcd=true;
+//Distance between LCD mounting holes
+dLcd = 99;
 
 
 				//**Nema**//
