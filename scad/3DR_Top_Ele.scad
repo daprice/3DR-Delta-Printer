@@ -136,6 +136,14 @@ module top_ele(){
 		auxHole(num=6,tra=3*rCov/4,ra=2,hh=hTopHol);
 		auxHole(num=6,tra=rCov/2,ra=8,hh=hT);
 		auxRectHole(num=6,tra=rCov/2+3,w=6,h=3,hh=hT/2-5); //tiedown
+		//holes for mounting LCD controller
+		if(lcd) {
+			translate([0,0,0]) rotate([0,0,30]) translate([lCov+tBas/2 - dLcd/2,20,hTop/2])
+				rotate([90,0,0]) cylinder(r=M4r, h=30, center=true);
+			mirror([0,1,0]) translate([0,0,0]) rotate([0,0,30]) translate([lCov+tBas/2 - dLcd/2,20,hTop/2])
+				rotate([90,0,0]) cylinder(r=M4r, h=30, center=true);
+
+		}
 		//hole for wire routing from motors (coming through the aluminum extrusion)
 		translate([sumV(v=vLT,i=3)+sol,dBea/2+2,0]) cube([10,10,hTop-hT]);
 		translate([0,0,hT])
