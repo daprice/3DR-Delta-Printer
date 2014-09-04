@@ -176,17 +176,17 @@ module top_ele(){
 		}
 		//if using aluminum extrusion for linear motion, add endstop mounting holes
 		//assuming mechanical endstop like https://ultimachine.com/content/microswitch-ss-3gl13pt
-		//use M2x5 screws and nuts
+		//use M2x10 screws and nuts
 		if (!useRod) {
 			translate([sumV(v=vLT,i=3)+sol,-10-5,hTop-8.4]) {
 				rotate([0,-90,0])
-					cylinder(d=2.4,h=5);
-				translate([-5,-2.05,-2])
+					cylinder(d=2.4,h=3.6);
+				translate([-3.6,-2.05,-2])
 					cube([1.3,4.1,10.5]);
 				translate([0,-9.5,0]) {
 					rotate([0,-90,0])
-						cylinder(d=2.5,h=5);
-					translate([-5,-2.05,-2])
+						cylinder(d=2.5,h=3.6);
+					translate([-3.6,-2.05,-2])
 						cube([1.3,4.1,10.5]);
 				}
 			}
