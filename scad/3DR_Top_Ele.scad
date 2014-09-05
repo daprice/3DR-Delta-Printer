@@ -181,13 +181,13 @@ module top_ele(){
 			translate([sumV(v=vLT,i=3)+sol,-10-5,hTop-8.4]) {
 				rotate([0,-90,0])
 					cylinder(d=2.4,h=3.6);
-				translate([-3.6,-2.05,-2])
-					cube([1.3,4.1,10.5]);
+				translate([-3.6,-2.15,-2])
+					cube([1.7,4.2,10.5]);
 				translate([0,-9.5,0]) {
 					rotate([0,-90,0])
 						cylinder(d=2.5,h=3.6);
-					translate([-3.6,-2.05,-2])
-						cube([1.3,4.1,10.5]);
+					translate([-3.6,-2.15,-2])
+						cube([1.7,4.2,10.5]);
 				}
 			}
 		}	
