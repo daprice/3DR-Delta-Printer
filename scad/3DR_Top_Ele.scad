@@ -97,10 +97,10 @@ module tslot_guide(){
 		cube([sumX(vL,vAn,4)-sumV(v=vLT,i=4)-sol,6,tTop+1]);
 	
 }
-module tslo_h(){
+module tslo_h(e=kSlot){
 	if(slot_ty=="tslot"){
 		difference(){	
-			linear_extrude(height=hTop+3) ts20(v=[1,3]);
+			linear_extrude(height=hTop+3) ts20(v=[1,3],e=e);
 			translate([0,dSlot/2-3,-sol]) cube([6,6,hTop-17]);
 			/*translate([dSlot/2,dSlot/2,0])
 				linear_extrude(height=hTop-8) ts204();*/
