@@ -86,7 +86,8 @@ hCar=lBea+3;
 tCar=(3<=rEndAc?rEndAc+1:3.5);
 echo(tCar);
 //Support width
-xJS=dBea-tCar-rBea*cos(asin(1/3));
+//xJS=dBea-tCar-rBea*cos(asin(1/3));
+xJS = 24;
 //Support height
 z=11.5;
 //Support constant,don´t modify
